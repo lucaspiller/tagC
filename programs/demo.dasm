@@ -1,0 +1,47 @@
+SET Z, 0xff00
+
+:loop
+ADD I, 1
+ADD J, 10
+
+IFE I, 0xffff
+JSR switch_forward_reverse
+
+IFE J, 0xfffa
+JSR switch_left_right
+
+SET PC, loop
+
+:switch_forward_reverse
+ADD A, 1
+IFE A, 1
+SET Z, 0x0000
+
+IFE A, 2
+SET Z, 0x00ff
+
+IFE A, 3
+SET Z, 0xff00
+
+IFE A, 3
+SET A, 0
+
+SET I, 0
+SET PC, POP
+
+:switch_left_right
+ADD B, 1
+IFE B, 1
+SET X, 0x0000
+
+IFE B, 2
+SET X, 0x00ff
+
+IFE B, 3
+SET X, 0xff00
+
+IFE B, 3
+SET B, 0
+
+SET J, 0
+SET PC, POP
