@@ -247,7 +247,7 @@ class LocalPlayer extends Player
 
   step: ->
     if @ship? && Gt.onStep?
-      Gt.onStep @ship
+      Gt.onStep()
 
   buildTurret: ->
     turret = new Turret {
@@ -265,7 +265,7 @@ class LocalPlayer extends Player
 
   buildShip: ->
     super
-    Gt.onStart() if Gt.onStart?
+    Gt.onStart(@ship) if Gt.onStart?
 
   respawn: ->
     Gt.onStop() if Gt.onStop?
@@ -1038,7 +1038,3 @@ class Vector
   @equal: (vector, other) ->
     vector.x == other.x && vector.y == other.y
 Gt.Vector = Vector
-
-# initialize
-$(document).ready ->
-  Gt.c = new Gt.Controller $('canvas').get 0

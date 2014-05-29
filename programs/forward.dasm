@@ -1,0 +1,18 @@
+HWN J
+
+:detect_hardware
+SUB J, 1
+HWQ J
+
+IFE A, 0x8697
+  IFE B, 0x89fc
+    SET [thrusters], J
+IFN J, 0
+SET PC, detect_hardware
+
+SET A, 0x0001 ; set thruster state
+SET B, 0xf000 ; state, forward
+HWI [thrusters]
+
+:thrusters
+DAT 0

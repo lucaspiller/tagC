@@ -1,19 +1,19 @@
 class BytecodeLoader
   constructor: (@element, @defaultBytecode, @callback) ->
-    @element.addEventListener 'change', this.loadFromFile
+    @element.addEventListener 'change', @loadFromFile
     @loadDefault()
 
   loadDefault: ->
     @callback @defaultBytecode
 
-  @loadFromFile: ->
+  loadFromFile: =>
     unless window.FileReader
       alert "Sorry, your browser isn't supported :("
       return
 
     reader = new FileReader()
-    reader.onload = ->
-      bytecode = new Uint16Array(Math.ceil(reader.result.length / 2))
+    reader.onload = =>
+      bytecode = new Array(Math.ceil(reader.result.length / 2))
 
       i = j = 0
       while i < reader.result.length
@@ -22,6 +22,7 @@ class BytecodeLoader
 
         bytecode[j++] = (low << 8) + high
 
+      console.log 'Loaded', bytecode.join(',')
       @callback bytecode
 
     reader.readAsBinaryString @element.files[0]

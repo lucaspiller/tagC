@@ -5,4 +5,4 @@ server:
 	http-server -p 4444 -c-1
 
 dev:
-	grunt watch
+	grunt && grunt watch
