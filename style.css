@@ -1,0 +1,16 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  color: white;
+}
+
+#debug {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 200px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  font: 14px 'Courier New', 'Courier', serif;
+}
